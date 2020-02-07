@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="description" content="66°Nord, Spécialiste des voyages polaires, Arctique et Antarctique, depuis plus de 20 ans. En voyage accompagné ou en liberté sur-mesure...." />        <link rel="canonical" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+    
+    <link rel="shortcut icon" href="front/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="front/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="front/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#96daf0">
+    <title>React App</title>
+
+     <!-- CSS -->
+     <link media="screen" rel="stylesheet" type="text/css" href="front/css/styles-desktop.minac8e.css" />
+     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+     <!-- [if lt IE 9]><script src="/front/js/vendor/html5shiv.min.js"></script><![endif] -->
+ 
+
+
+    <!-- Modernirz & Detectizr -->
+    <script src="front/js/header.min.js"></script>
+    <!-- Inits for pages transitions -->
+    <script>
+        window.readCookie = function(name) {
+            var nameEQ = name;
+            var ca = document.cookie.split(';');
+            var i = 0;
+            var lg = ca.length;
+            var rs = null;
+            for(i=0;i<lg;i++){
+                if(ca[i].indexOf(name) != -1){
+                    rs = ca[i].split("=")[1];
+                }
+            }
+            return rs;
+        };
+        if (readCookie("66nord-header-transition") == "true" || readCookie("66nord-team-transition") == "true") {
+            var css = '.main-loader-bg { display: none; opacity: 0;} body { background-color: #242a3a; }',
+                head = document.head || document.getElementsByTagName('head')[0],
+                style = document.createElement('style');
+            if  (readCookie("66nord-openteam-transition") == "true" ) {
+                css += " .mteam-nav-item, .mteam-close { opacity: 0; transform: translateY(100px);}"
+            }
+            style.type = 'text/css';
+            if (style.styleSheet){
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(document.createTextNode(css));
+            }
+            head.appendChild(style);
+        }
+    </script>
+    
+  </head>
+  <body  class="no-scroll-fixed">
+   
+    <div id="root"></div>  
+
+<!-- JS -->
+<script>
+
+  /* Youtube */
+  var page = document.querySelector("#page");
+
+  if (page.className.match(/\btravel-guide\b/)) {
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  }
+
+  function onYouTubeIframeAPIReady() {
+      checkScriptReadyForYt();
+  }
+
+  function checkScriptReadyForYt() {
+      if (window["N66"] && N66.PagesController && N66.PagesController.page && N66.PagesController.page["youtubeReady"]) {
+          N66.PagesController.page.youtubeReady.call(N66.PagesController.page);
+      } else {
+          setTimeout(checkScriptReadyForYt, 100);
+      }
+  }
+  /* End Youtube */
+
+  /* JS vars */
+  var STF_Config		= {
+      ALL_LANG: ['fr'],
+      CREDITS: {
+          author: 'Akaru',
+          authorUrl: 'www.akaru.fr',
+          color1: '#000',
+          color2: '#fff',
+          color3: '#f91d65'
+      },
+      ENVS: {
+          base_url: '/',
+          assets_base_url: '/front/'
+      },
+      GA_ID: JSON.parse('\x7B"default":"UA-7727234-1"\x7D'),
+      IS_PROD: true,
+      NEED_PAGE_ID: true
+  };
+  var STF_Device		= JSON.parse( '\x7B\x22HAS_MOBILE_VERSION\x22\x3Afalse,\x22TABLET_VERSION\x22\x3A\x22desktop\x22,\x22FORCE_DEVICE\x22\x3Afalse,\x22DEVICE\x22\x3A\x22desktop\x22,\x22IS_DESKTOP\x22\x3Atrue,\x22IS_TABLET\x22\x3Afalse,\x22IS_MOBILE\x22\x3Afalse,\x22BROWSER\x22\x3A\x22Curl\x22,\x22BROWSER_VERSION\x22\x3A\x227.54.0\x22,\x22BROWSER_ENGINE\x22\x3A\x22\x22,\x22IS_OLD_BROWSER\x22\x3Afalse,\x22IS_IE\x22\x3Afalse,\x22IS_EDGE\x22\x3Afalse\x7D' );
+  var STF_JS_VIEWS_ID	= JSON.parse( 'null' );
+
+  /* Reset img's src tag to stop loading */
+  var STF_resetImgs = function( $imgs ) {
+      var $img, src;
+      for ( var i = 0; i < $imgs.length; i++ ) {
+          $img		= $imgs[i];
+          src			= $img.src;
+          $img.src	= '';
+          $img.src	= STF_Config.ENVS.assets_base_url + 'img/bgs/pattern-transparent.png';
+          $img.setAttribute( 'data-src' , src );
+      }
+  };
+
+  // Filter only img-lazyload for header-transition
+  STF_resetImgs( document.querySelectorAll( 'img.img-lazyload' ) );
+
+</script>
+
+
+<!--[if lt IE 9]><script src="/front/js/scripts-desktop-oldie.min.js?v=1580140604"></script><![endif]-->
+<!--[if (gte IE 9) | !(IE)]><!--><script src="front/js/scripts-desktop.minfc60.js?v=1580140594"></script><!--<![endif]-->
+
+
+  
+ 
+  </body>
+</html>
